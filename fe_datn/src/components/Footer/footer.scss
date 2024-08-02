@@ -1,0 +1,63 @@
+/** @format */
+
+.footer {
+    width: 100%;
+    float: top;
+    margin-top: 50px;
+    hr {
+        border: 2px solid black;
+        border-radius: 5px;
+        margin:0;
+      }
+}
+
+.footer-row1 {
+    width:100%;
+    background-color: white;
+    padding-top: 30px;
+}
+
+.footer-row2 {
+    width:100%;
+    background-color: #eeeeee;
+    padding-top: 30px;
+}
+
+.wrap-content {
+    width: 90%;
+    padding: 10px 10px;
+    margin:auto;
+}
+
+.wrap-col {
+    width:75%;
+    padding-top:10px;
+    padding-bottom: 10px;
+    margin:auto;
+}
+
+.col-footer {
+    width: 33%;
+    height: 100%;
+    display: inline-block;
+    
+    a {
+        display: block;
+        text-decoration-line: none;
+        color: #707070; 
+    }
+
+    .img-logo-food {
+        height: 60px;
+        margin-bottom: 4px;
+    }
+
+    .img-logo {
+        height: 16px;
+    }
+}
+    
+.headline-col {
+    font-weight: bold;
+    display: block;
+}

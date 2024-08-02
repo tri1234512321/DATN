@@ -1,0 +1,135 @@
+{
+      "homeheader": {
+            "speciality": "Medical speciality",
+            "searchdoctor": "Find a doctor by speciality",
+            "health-facilties": "Health facilities",
+            "choose-room": "Choose hopital clinic",
+            "doctor": "Doctor",
+            "choose-good-doctor": "Choose a good doctor",
+            "checkup-pakage": "Checkup pakage",
+            "genaral-health-check": "Genaral health check",
+            "support": "Support",
+            "welcome": "Welcome"
+      },
+      "banner": {
+            "medical-background": "MEDICAL BACKGROUND",
+            "comprehensive-health-care": "COMPREHENSIVE HEALTH CARE",
+            "onsearch": "Search",
+            "examination": "Examination",
+            "speciality": "Speciality",
+            "from-afar": "from far away",
+            "test": "Test",
+            "medicine": "medicine",
+            "genarality": "genarality",
+            "health": "Health",
+            "spirit": "spirit",
+            "dentistry": "dentistry",
+            "pakage": "Pakage",
+            "surgery": "surgery",
+            "product": "Product",
+            "medical": "medical",
+            "enterprise": "enterprise"
+      },
+      "menu": {
+            "system": {
+                  "header": "System",
+                  "system-administrator": {
+                        "header": "System Administrator",
+                        "user-manage": "User manage",
+                        "user-redux": "Manage user using redux"
+                  },
+                  "system-parameter": {
+                        "header": "System-parameter"
+                  }
+            },
+            "management": {
+                  "management-members": "Manage Members",
+                  "management-all-members": "Management all members",
+                  "manage-shop": "Manage Shop",
+                  "manage-shipper": "Manage Deliveries",
+                  "manage-buyers": "Manage Buyer",
+                  "manage-activity-shop": "Manage activity shop",
+                  "manage-activity-shipper": "Manage activity shipper",
+                  "manage-job": "Manage job",
+                  "manage-revenue": "Manage revenue",
+                  "manage-revenue-shop": "Management revenue shop",
+
+                  "home-shop": "Home shop",
+                  "management-foods": "Management foods",
+                  "management-activity": "Management activity",
+                  "management-order": "Management order",
+                  "management-ordered": "Management ordered",
+                  "order-delivering": "Order delivering",
+                  "order-delivered": "Order delivered",
+                  "order-returned": "Order returned",
+                  "management-revenue": "Management revenue",
+
+                  "home-shipper": "Home shipper",
+                  "management-register-jobs": "Management register jobs",
+                  "management-schedule-jobs": "Management schedule jobs",
+                  "management-order-of-shop": "Management order of shop",
+                  "management-container-order": "Management container order",
+                  "management-order-delivering": "Management order delivering",
+                  "management-order-delivered": "Management order delivered",
+                  "management-order-returned": "Management order returned",
+                  "management-salary": "management-salary"
+            },
+            "Shipper": {
+                  "manage-schedule": "Manage Doctor's schedule"
+            },
+            "Eatery": {
+                  "manage-schedule": "Manage Doctor's schedule"
+            }
+      },
+      "manage-user": {
+            "add": "Add new user",
+            "email": "Email",
+            "password": "Password",
+            "re-enter-password": "Re-Enter password",
+            "first-name": "Fisrt name",
+            "last-name": "Last name",
+            "phone-number": "Phone number",
+            "address": "Address",
+            "gender": "Gender",
+            "choose-gender": "Choose gender",
+            "female": "Female",
+            "male": "Male",
+            "other": "Other",
+            "position": "Position",
+            "choose-position": "Choose positon",
+            "admin": "Admin",
+            "doctor": "Doctor",
+            "patient": "Patient",
+            "role": "Role",
+            "choose-role": "Choose role",
+            "image": "Image avatar",
+            "save": "Save user",
+            "title": "Learn CRUD with Redux",
+            "outstanding-doctor": "List of outstanding doctors last week",
+            "more-infor": "See more"
+      },
+      "manage-doctor": {
+            "add-infor-doctor": "Add information doctor",
+            "choose-doctor": "Choose doctor",
+            "create-detail": "Create new",
+            "update-detail": "Update",
+            "choose-price": "Choose price",
+            "choose-payment": "Choose method payment",
+            "choose-province": "Choose province",
+            "clinic-name": "Clinic name",
+            "clinic-address": "Clinic address",
+            "note": "Note"
+      },
+      "manage-schedule": {
+            "title": "Manage doctor's examination plan",
+            "choose-doctor": "Choose doctor",
+            "choose-date": "Choose date",
+            "save": "Save infor",
+            "calendar": "Calendar",
+            "none-calendar": "No appointment, please choose another date!",
+            "examination-address": "Examination address",
+            "choose": "Choose",
+            "and-put": "and put",
+            "calendar-free": "Calendar free"
+      }
+}

@@ -1,0 +1,129 @@
+{
+      "homeheader": {
+            "speciality": "Chuyên khoa",
+            "searchdoctor": "Tìm bác sĩ theo chuyên khoa",
+            "health-facilties": "Cơ sở y tế",
+            "choose-room": "Chọn phòng khám bệnh viện",
+            "doctor": "Bác sĩ",
+            "choose-good-doctor": "Chọn bác sĩ giỏi",
+            "checkup-pakage": "Chọn gói khám",
+            "genaral-health-check": "Khám sức khỏe tổng quát",
+            "support": "Hỗ trợ",
+            "welcome": "Xin chào"
+      },
+      "banner": {
+            "medical-background": "NỀN TẢNG Y TẾ",
+            "comprehensive-health-care": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+            "onsearch": "Tìm kiếm",
+            "examination": "Khám",
+            "speciality": "Chuyên khoa",
+            "from-afar": "từ xa",
+            "test": "Xét nghiệm",
+            "medicine": "y học",
+            "genarality": "tổng quát",
+            "health": "Sức khỏe",
+            "spirit": "tinh thần",
+            "dentistry": "nha khoa",
+            "pakage": "Gói",
+            "surgery": "phẫu thuật",
+            "product": "Sản phẩm",
+            "medical": "y tế",
+            "enterprise": "doanh nghiệp"
+      },
+      "menu": {
+            "system": {
+                  "header": "Hệ thống",
+                  "system-administrator": {
+                        "header": "Quản trị hệ thống",
+                        "user-manage": "Quản lý người sử dụng",
+                        "user-redux": "Quản lý user redux"
+                  },
+                  "system-parameter": {
+                        "header": "Tham số hệ thống"
+                  }
+            },
+            "management": {
+                  "management-members": "Quản lý người dùng",
+                  "management-all-members": "Quản lý tất cả người dùng",
+                  "manage-shop": "Quản lý cửa hàng",
+                  "manage-shipper": "Quản lý giao hàng",
+                  "manage-buyers": "Quản lý người mua",
+                  "manage-activity-shop": "Quản lý hoạt động cửa hàng",
+                  "manage-activity-shipper": "Quản lý hoạt động giao hàng",
+                  "manage-job": "Quản lý việc làm",
+                  "manage-revenue": "Quản lý doanh thu",
+                  "manage-revenue-shop": "Quản lý doanh thu cửa hàng",
+
+                  "home-shop": "Cửa hàng",
+                  "management-foods": "Quản lý món ăn",
+                  "management-activity": "Quản lý hoạt động quán",
+                  "management-order": "Quản lý đơn hàng",
+                  "management-ordered": "Quản lý đang được đặt",
+                  "order-delivering": "Quản lý đơn đang được giao",
+                  "order-delivered": "Quản lý đơn đã giao",
+                  "order-returned": "Quản lý bị trả lại",
+                  "management-revenue": "Quản lý doanh thu",
+
+                  "home-shipper": "Trang chủ",
+                  "management-register-jobs": "Đăng ký công việc",
+                  "management-schedule-jobs": "Quản lý giờ làm",
+                  "management-order-of-shop": "Quản lý đơn hàng quán ăn",
+                  "management-container-order": "Quản lý thùng hàng",
+                  "management-order-delivering": "Quản lý đơn đang giao",
+                  "management-order-delivered": "Quản lý đơn đã giao",
+                  "management-order-returned": "Quản lý đơn trả lại",
+                  "management-salary": "Quản lý lương"
+            }
+      },
+      "manage-user": {
+            "title": "Học CRUD với Redux",
+            "add": "Thêm mới người dùng",
+            "email": "Địa chỉ email",
+            "password": "Mật khẩu",
+            "re-enter-password": "Nhập lại mật khẩu",
+            "first-name": "Họ",
+            "last-name": "Tên",
+            "phone-number": "Số điện thoại",
+            "address": "Địa chỉ",
+            "gender": "Giới tính",
+            "choose-gender": "Chọn giới tính",
+            "female": "Nữ",
+            "male": "Nam",
+            "other": "Khác",
+            "position": "Chức vị",
+            "choose-position": "Chọn chức vị",
+            "admin": "Admin",
+            "doctor": "Bác sĩ",
+            "patient": "Bệnh nhân",
+            "role": "Vai trò",
+            "choose-role": "Chọn vai trò",
+            "image": "Ảnh đại diện",
+            "save": "Lưu người dùng",
+            "outstanding-doctor": "Danh sách bác sĩ nổi bật tuần qua",
+            "more-infor": "Xem thêm"
+      },
+      "manage-doctor": {
+            "add-infor-doctor": "Thêm thông tin bác sĩ",
+            "choose-doctor": "Chọn bác sĩ",
+            "create-detail": "Tạo mới",
+            "update-detail": "Cập nhật",
+            "choose-price": "Chọn giá",
+            "choose-payment": "Chọn phương thức thanh toán",
+            "choose-province": "Chọn tỉnh",
+            "clinic-name": "Tên phòng khám",
+            "clinic-address": "Địa chỉ phòng khám",
+            "note": "Ghi chú"
+      },
+      "manage-schedule": {
+            "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
+            "choose-doctor": "Chọn bác sĩ",
+            "choose-date": "Chọn ngày",
+            "save": "Lưu thông tin",
+            "calendar": "Lịch khám",
+            "none-calendar": "Không có lịch khám, vui lòng chọn ngày khác!",
+            "examination-address": "Địa chỉ khám",
+            "choose": "Chọn",
+            "and-put": "và đặt",
+            "calendar-free": "đặt lịch miễn phí"
+      }
+}
