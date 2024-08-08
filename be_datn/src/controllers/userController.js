@@ -13,6 +13,13 @@ const handleLogin = async (req, res) => {
                   });
             }
             let userData = await userService.handleUserLogin(email, password);
+            if(!userData.data.access_token) {
+                  return res.status(403).json({
+                        EC: userData.EC,
+                        EM: userData.EM,
+                        data: null,
+                  })
+            }
             res.cookie("jwt", userData.data.access_token, { httpOnly: true });
             return res.status(200).json({
                   EC: userData.EC,
