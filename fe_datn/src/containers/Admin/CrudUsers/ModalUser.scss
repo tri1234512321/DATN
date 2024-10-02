@@ -1,0 +1,43 @@
+/** @format */
+.wrap-choose-avatar {
+      display: flex;
+      .upload-avatar {
+            display: flex;
+            align-items: center;
+            .icon-upload {
+                  height: 30px;
+                  transition: height 250ms ease-in-out;
+                  &:hover {
+                        cursor: pointer;
+                        color: #2989ff;
+                        height: 32px;
+                  }
+            }
+      }
+      .contain-avatar {
+            width: 80%;
+            height: 80px;
+            box-shadow: 0 1px 6px #20212447;
+            margin-left: 24px;
+            .name-image {
+                  display: flex;
+                  justify-content: center;
+                  margin: 0;
+                  padding: 0;
+            }
+            .avatar {
+                  background-size: 120px;
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  height: 100%;
+            }
+      }
+}
+
+input {
+      margin: 0;
+}
+
+modal-user-container {
+      width: 800px;
+}

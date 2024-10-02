@@ -17,21 +17,9 @@ module.exports = {
                         allowNull: false,
                         type: Sequelize.INTEGER,
                   },
-                  hourlyWage: {
+                  accepted: {
                         allowNull: false,
-                        type: Sequelize.STRING,
-                  },
-                  date: {
-                        allowNull: false,
-                        type: Sequelize.STRING,
-                  },
-                  startShift: {
-                        allowNull: false,
-                        type: Sequelize.STRING,
-                  },
-                  endShift: {
-                        allowNull: false,
-                        type: Sequelize.STRING,
+                        type: Sequelize.INTEGER,
                   },
                   createdAt: {
                         allowNull: false,
@@ -48,4 +36,4 @@ module.exports = {
       },
 };
 
-// npx sequelize-cli db:migrate --to migration-create-user.js
+// npx sequelize-cli db:migrate --to migration-create-shift.js

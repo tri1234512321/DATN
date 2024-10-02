@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllCart: (access_token) => dispatch(actions.fetchAllCartStart(access_token)),
+    // getAllCart: (access_token) => dispatch(actions.fetchAllCartStart(access_token)),
   };
 };
 

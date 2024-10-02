@@ -14,102 +14,161 @@ $font-family-manrope: "Manrope", sans-serif;
 $font-family-poppins: "Poppins", sans-serif;
 $transition-ease: all 300ms ease-in-out;
 
+/** @format */
+
 .wrap-payment {
-  width: 100%;
-
   .container-payment {
-    max-width: 1400px;
-    margin: 40px auto;
-    .cart-ctable {
-      min-width: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .cart-ctable {
+    .cart-chead {
       .cart-ctr {
-        grid-template-columns: 1fr 4fr 2fr 2fr 2fr 2fr;
-        min-height: 40px;
-        border-bottom: 1px solid $clr-whitesmoke;
         display: grid;
-        align-items: center !important;
-      }
-      .cart-chead {
-        padding-right: 2rem;
-        padding-left: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: rgba(60, 64, 67, 0.01) 0px 1px 2px 0px, rgba(60, 64, 67, 0.01) 0px 1px 3px 1px;
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 16px;
-      }
-      .cart-cbody {
-        padding-right: 2rem;
-        padding-left: 2rem;
-        box-shadow: rgba(60, 64, 67, 0.01) 0px 1px 2px 0px, rgba(60, 64, 67, 0.01) 0px 1px 3px 1px;
-        border-radius: 3px;
-        font-size: 14.5px;
-        color: rgba(0, 0, 0, 0.6);
-      }
-      .delete-btn {
-        font-size: 16px;
-        transition: $transition-ease;
-        border: none;
-        background-color: white;
-        &:hover {
-          color: $clr-danger;
-        }
-      }
-      .qty-change {
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        margin-left: -18px;
-      }
-      .qty-decrease,
-      .qty-increase {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 5px;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .qty-value {
-        width: 40px;
-        height: 40px;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+        padding: 10px 0;
+        font-weight: bold;
         text-align: center;
-        justify-content: center;
-        align-items: center;
-        display: flex;
+
+        .cart-cth {
+          padding: 10px;
+          border-bottom: 2px solid #ddd;
+        }
+      }
+    }
+
+    .cart-cfoot {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-top: 2px solid #ddd;
+      background-color: #fff;
+
+      .clear-cart-btn,
+      .checkout-btn {
+        /* Các kiểu dáng nút bình thường */
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
       }
 
-      .cart-cfoot {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10rem;
-        margin-top: 2rem;
-        .total-txt {
-          margin-right: -1rem;
-          display: flex;
-          align-items: center;
-          font-size: 20px;
-        }
+      .clear-cart-btn:disabled,
+      .checkout-btn:disabled {
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        cursor: not-allowed;
+        opacity: 0.5; /* Làm mờ nút bấm khi disabled */
+      }
 
-        .clear-cart-btn {
-          border: 1px solid $clr-danger;
-          padding: 0.7rem 1rem;
-          transition: $transition-ease;
+      .clear-cart-btn {
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        background-color: red; /* Màu nền của nút khi bình thường */
+        color: white; /* Màu chữ của nút khi bình thường */
+      }
 
-          &:hover {
-            background-color: $clr-danger;
-            color: $clr-danger;
-          }
-        }
-        .checkout-btn {
-          padding: 0.8rem 2.8rem;
-          margin-top: 0.7rem;
-          background-color: #f94e30;
-        }
+      .clear-cart-btn:disabled {
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        background-color: #f5c6cb; /* Màu nền của nút khi disabled */
+        color: #721c24; /* Màu chữ của nút khi disabled */
+      }
+
+      .checkout-btn {
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        background-color: #ff7300; /* Màu nền của nút khi bình thường */
+        color: #fff; /* Màu chữ của nút khi bình thường */
+      }
+
+      .checkout-btn:disabled {
+        min-height: 40px;
+        border-radius: 8px;
+        padding: 4px 16px;
+        background-color: #f5a623; /* Màu nền của nút khi disabled */
+        color: #fff; /* Màu chữ của nút khi disabled */
+      }
+    }
+  }
+}
+
+.cart-ctable-item {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+  background-color: #fff;
+
+  .cart-ctd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    .image-description {
+      width: 40px;
+      height: 40px;
+      background-position: center;
+      background-size: cover;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &:first-child {
+      font-weight: bold;
+    }
+
+    .cart-image {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .cart-product-info {
+      .cart-product-name {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .cart-product-description {
+        font-size: 14px;
+        color: #555;
+      }
+    }
+
+    .cart-quantity-input {
+      width: 60px;
+      text-align: center;
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 16px;
+      cursor: pointer;
+
+      .fa-trash {
+        margin: 0;
       }
     }
   }

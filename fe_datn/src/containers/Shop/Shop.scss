@@ -1,0 +1,61 @@
+/** @format */
+
+.shop-container-infor {
+      .wrap-container {
+            .attraction {
+                  display: flex;
+                  justify-content: space-between;
+                  .avatar-shop {
+                        width: 40%;
+                        border: 1px solid red;
+                        .avatar {
+                              width: 100%;
+                              max-height: 690px;
+                              height: 400px;
+                              background-color: aqua;
+                        }
+                        .update-new-avatar-shop {
+                              text-align: center;
+                        }
+                  }
+                  .desc-attract {
+                        width: 56%;
+                  }
+            }
+            .more-infor-shop {
+                  width: 100%;
+                  .detail-infor-shop {
+                        .wrap-more-image-desc {
+                              display: flex;
+                              justify-content: space-between;
+                              width: 100%;
+                              .more-image-shop {
+                                    width: 40%;
+                                    max-height: 690px;
+                                    height: 400px;
+                                    background-color: aqua;
+                              }
+                              .more-desc-shop {
+                                    width: 56%;
+                              }
+                        }
+                        .wrap-button-remove-update {
+                              display: flex;
+                              justify-content: center;
+                              .remove-infor-shop {
+                                    margin: 4px;
+                                    border: 1px solid red;
+                              }
+                              .update-infor-shop {
+                                    margin: 4px;
+                                    border: 1px solid sandybrown;
+                              }
+                        }
+                  }
+            }
+            .btn-add-more-infor {
+                  margin: 16px;
+                  border: 1px solid cyan;
+            }
+      }
+}

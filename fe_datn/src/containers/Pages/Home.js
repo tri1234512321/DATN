@@ -8,13 +8,15 @@ import CategoriesShop from "../../components/Shop/CategoriesShop/CategoriesShop"
 import Footer from "../../components/Footer/Footer";
 const Home = () => {
   return (
-    <Fragment>
+    // <div className="bg-[#f6f3f3]">
+    <div>
       <Backgroundimg />
-      <CategoriesShop />
-      <CategoriesWideProduct />
-      <AllFoodItem />
-      <Footer />
-    </Fragment>
+        {/* <CategoriesShop /> */}
+        {/* <CategoriesWideProduct /> */}
+        <CategoriesWideProduct />
+        <AllFoodItem />
+      {/* <Footer /> */}
+    </div>
   );
 };
 export default Home;

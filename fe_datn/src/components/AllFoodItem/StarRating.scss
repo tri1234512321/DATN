@@ -1,0 +1,14 @@
+.star-rating {
+  display: flex;
+}
+
+.star {
+  width: 28px;
+  height: 28px;
+  margin-right: 1px; /* Khoảng cách giữa các sao */
+}
+
+.star path {
+  stroke: #949494; /* Màu viền nhẹ hơn */
+  stroke-width: 0.2px; /* Độ dày viền nhẹ hơn */
+}

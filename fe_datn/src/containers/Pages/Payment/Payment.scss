@@ -1,0 +1,53 @@
+form {
+  display: flex;
+  flex-direction: column;
+  // gap: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  color: rgb(88, 88, 88);
+  font-size: 14px;
+  margin-bottom: 10px;
+
+  .imgContainer {
+    position: relative;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      font-size: 30px;
+      color: lightgray;
+      cursor: pointer;
+    }
+  }
+}
+
+input {
+  padding: 8px 8px;
+  border-radius: 5px;
+  border: 1px solid #bebebe;
+  color: gray;
+  background-color: transparent;
+  margin-bottom: 20px;
+}
+
+button {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: #ff7300;
+  width: 200px;
+  border-radius:6px;
+}

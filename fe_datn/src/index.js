@@ -11,16 +11,29 @@ import * as serviceWorker from "./serviceWorker";
 import IntlProviderWrapper from "./hoc/IntlProviderWrapper";
 import { Provider } from "react-redux";
 import reduxStore, { persistor } from "./redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthContextProvider } from "./context/authContext";
+import {SocketContext, socket} from "./context/socketContext";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
+const client = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
-        <Provider store={reduxStore}>
-            <IntlProviderWrapper>
-                <App persistor={persistor} />
-            </IntlProviderWrapper>
-        </Provider>
-    </React.StrictMode>,
+  <Provider store={reduxStore}>
+    <IntlProviderWrapper>
+      <AuthContextProvider>
+        <SocketContext.Provider value={socket}>
+          <QueryClientProvider client={client}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <App persistor={persistor} />
+            </LocalizationProvider>
+          </QueryClientProvider>
+        </SocketContext.Provider>
+      </AuthContextProvider>
+    </IntlProviderWrapper>
+  </Provider>
 );
 
 serviceWorker.unregister();

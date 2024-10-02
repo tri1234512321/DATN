@@ -7,14 +7,32 @@ import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { userIsAuthenticated, userIsNotAuthenticated } from "../hoc/authentication";
+import {
+  userIsAuthenticated,
+  userIsNotAuthenticated,
+} from "../hoc/authentication";
 import { path } from "../utils";
-//////////////////////
+
+//Begin Component management of admin
+import Admin from "../containers/Admin/Admin";
+//End Component management of admin
+//----------------------------------------------------------------
+//Begin Component management of Shop
+import Shop from "../containers/Shop/Shop";
 //End Component management of Shop
+//Begin Component management of Shop
+import Shipper from "../containers/Shipper/Shipper";
+//////////////////////
 import Home from "../containers/Pages/Home";
 import PageNotFound from "../containers/Pages/PageNotFound";
 import Login from "../containers/Auth/Login";
 import ShoppingCart from "../containers/Pages/ShoppingCart/ShoppingCart";
+import FoodItem from "../components/ItemFood/Detail/FoodItem";
+import ShopDetail from "../containers/Pages/Shop/ShopDetail";
+import Social from "../containers/Social/Social";
+import Payment from "../containers/Pages/Payment/Payment";
+import HistoryOrder from "../components/HistoryOrder/HistoryOrder";
+import Register from "../containers/Auth/Register";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -39,25 +57,53 @@ class App extends Component {
     return (
       <Fragment>
         <Router history={history}>
-          <div className='main-container'>
+          <div className="main-container">
             {/* {this.props.isLoggedIn && <Header />} */}
 
-            <div className='content-container'>
+            <div className="content-container">
               <Switch>
                 {/*page  khu A */}
                 <Route path={"/"} exact component={Home}></Route>
                 {/* ------------------------------- */}
-                <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                <Route
+                  path={path.LOGIN}
+                  component={userIsNotAuthenticated(Login)}
+                />
+                <Route
+                  path={"/register"}
+                  component={userIsNotAuthenticated(Register)}
+                />
                 {/* ------------------------------- */}
+                {/* ------------------------------- */}
+                <Route path={"/admin"} component={userIsAuthenticated(Admin)} />
+                {/* ------------------------------- */}
+                <Route path={"/shop"} component={userIsAuthenticated(Shop)} />
+                {/* ------------------------------- */}
+                <Route
+                  path={"/shipper"}
+                  component={userIsAuthenticated(Shipper)}
+                />
+                <Route path={"/social"} component={Social} />
                 {/* router page not found */}
-                <Route path={"/page-not-found"} exact component={PageNotFound} />
                 <Route path={"/shopping-cart"} exact component={ShoppingCart} />
+                <Route path={"/food/:id"} exact component={FoodItem} />
+                <Route path={"/shop-details/:id"} exact component = {ShopDetail} />
+                <Route
+                  path={"/page-not-found"}
+                  exact
+                  component={PageNotFound}
+                />
+                <Route path={"/shopping-cart"} exact component={ShoppingCart} />
+                <Route path={"/food/:id"} exact component={FoodItem} />
+                <Route path={"/shop-details/:id"} exact component={ShopDetail} />
+                <Route path={"/payment"} exact component={Payment}/>
+                <Route path={"/history-order"} exact component={HistoryOrder}/>
               </Switch>
             </div>
 
             <ToastContainer
-              position='bottom-right'
-              autoClose={5000}
+              position="bottom-right"
+              autoClose={2000}
               hideProgressBar={false}
               newsOpTop={false}
               closeOnClick

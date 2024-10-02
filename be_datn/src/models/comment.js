@@ -1,36 +1,42 @@
-/** @format */
-
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-      class Comment extends Model {
-            /**
-             * Helper method for defining associations.
-             * This method is not a part of Sequelize lifecycle.
-             * The `models/index` file will call this method automatically.
-             */
-            static associate(models) {
-                  // define association here
-                  // // Markdown.hasMany(models.Doctor_Infor, { foreignKey: "doctorId", as: "priceTypeData" });
-                  // Markdown.belongsTo(models.Doctor_Infor, { foreignKey: "doctorId" });
-                  // Markdown.belongsTo(models.User, { foreignKey: "doctorId" });
-                  // Comment.belongsTo(models.User, { foreignKey: "id_User" });
-                  // Comment.hasMany(models.Device, { foreignKey: "idLocation" });
-                  // Comment.hasMany(models.Sensor, { foreignKey: "idLocation" });
-            }
-      }
-      Comment.init(
-            {
-                  idUserSend: DataTypes.INTEGER,
-                  idUserReceive: DataTypes.INTEGER,
-                  idPost: DataTypes.INTEGER,
-                  idFood: DataTypes.INTEGER,
-                  content: DataTypes.STRING,
-            },
-            {
-                  sequelize,
-                  modelName: "Comment",
-            },
-      );
-      return Comment;
+  class Comment extends Model {
+    static associate(models) {
+      Comment.hasMany(models.ExtraCommentImage, {
+        foreignKey: "commentId",
+        as: "extraCommentImages",
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      });
+
+      // Comment thuộc về User
+      Comment.belongsTo(models.User, {
+        foreignKey: "idUserSend",
+        as: "user",
+      });
+
+      // Comment thuộc về Rate
+      Comment.belongsTo(models.Rate, {
+        foreignKey: "rateId",
+        as: "rate",
+      });
+    }
+  }
+
+  Comment.init(
+    {
+      idUserSend: DataTypes.INTEGER,
+      rateId: DataTypes.INTEGER,
+      content: DataTypes.TEXT,
+      idPost: DataTypes.INTEGER
+    },
+    {
+      sequelize,
+      modelName: "Comment",
+    }
+  );
+
+  return Comment;
 };

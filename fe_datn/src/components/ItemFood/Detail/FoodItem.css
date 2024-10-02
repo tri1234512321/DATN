@@ -1,0 +1,150 @@
+/* Custom CSS for Ant Design Carousel arrows */
+.carousel-image {
+  width: 100%;
+  height:100%;
+  min-height: 280px;
+  object-fit: cover; /* Đảm bảo hình ảnh được cắt đúng cách */
+}
+
+.custom-carousel .slick-prev, .custom-carousel .slick-next {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: black; /* Màu nền cho nút */
+    color: white; /* Màu chữ hoặc icon trên nút */
+    border-radius: 50%; /* Tạo hình tròn cho nút */
+    z-index: 1000; /* Đảm bảo các nút không bị che khuất */
+  }
+
+  /* Nút Previous */
+  .custom-carousel .slick-prev {
+    left: 10px; /* Điều chỉnh vị trí từ trái */
+  }
+
+  /* Nút Next */
+  .custom-carousel .slick-next {
+    right: 10px; /* Điều chỉnh vị trí từ phải */
+  }
+
+  /* Điều chỉnh icon cho các nút */
+  .custom-carousel .slick-prev::before,
+  .custom-carousel .slick-next::before {
+    font-size: 24px !important; /* Kích thước icon */
+  }
+
+  /* Đảm bảo các nút không bị ảnh hưởng bởi opacity */
+  .custom-carousel .slick-prev, .custom-carousel .slick-next {
+    opacity: 1 !important; /* Đảm bảo nút không bị transparent */
+  }
+
+  .modal-carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* Đảm bảo nút ở trên cùng */
+  }
+
+  .modal-carousel-button-left {
+    left: 16px;
+  }
+
+  .modal-carousel-button-right {
+    right: 16px;
+  }
+
+  .btn-add-buy {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    width:fit-content;
+    background: rgba(255, 255, 255, 0.8);
+
+    button {
+      width: fit-content;
+      height: 36px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .btn-add {
+      background-color: #f57224;
+
+      &:hover {
+        background-color: #d0611e;
+      }
+    }
+
+    .btn-buy-now {
+      background-color: #ffb916;
+
+      &:hover {
+        background-color: #e59b11;
+      }
+    }
+  }
+  .image-previews {
+    width: 100%;
+    height: 70px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:hover {
+      .overlay {
+        opacity: 1;
+      }
+    }
+  }
+  .image-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .image-modal-content img {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .expand-icon {
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .ant-modal-content {
+    padding: 28px 40px !important;
+  }
+  .ant-modal-close {
+    border: 0.2px solid black !important;
+    border-radius: 50% !important;
+
+  }
+  .ant-modal-close:hover {
+    border-color: #b0b0b0;
+  }

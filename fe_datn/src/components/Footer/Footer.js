@@ -16,7 +16,7 @@ class Footer extends Component {
                   <React.Fragment>
                         <div className='footer'>
                         <hr />
-                              <div className="footer-row1">
+                              <div className="footer-row1 max-w-[1200px] mx-auto my-[50px]">
                                     <div className="wrap-content">
                                           
                                           <p className="headline-col">FFOOD - ĐẶT ĐỒ ĂN LÀNG ĐẠI HỌC NHANH CHÓNG, TIỆN LỢI</p>
@@ -58,9 +58,9 @@ class Footer extends Component {
                                           <div className="col-footer">
                                                 <p className="headline-col">THEO DÕI CHÚNG TÔI</p>
                                                 <img src={LogoFood} alt='Logo Food' className='img-logo-food'></img>
-                                                <a href="/"><img src={LogoFb} alt='Logo Food' className='img-logo'></img> Facebook</a>
-                                                <a href="/"><img src={LogoIst} alt='Logo Food' className='img-logo'></img> Instagram</a>
-                                                <a href="/"><img src={LogoLinked} alt='Logo Food' className='img-logo'></img> LinkedIn</a>
+                                                <a href className="flex-row"><img src={LogoFb} alt='Logo Food' className='img-logo'></img> <p>Facebook</p></a>
+                                                <a href="/" className="flex"><img src={LogoIst} alt='Logo Food' className='img-logo'></img> Instagram</a>
+                                                <a href="/" className="flex"><img src={LogoLinked} alt='Logo Food' className='img-logo'></img> LinkedIn</a>
                                           </div>
                                     </div>
                               </div>

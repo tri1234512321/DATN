@@ -98,7 +98,7 @@ class ForgotPassword extends Component {
                                     <img src={rightLogin} alt='img-right-forgot' className='img-right-forgot' />
                               </div> */}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </Fragment>
     );
   }

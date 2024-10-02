@@ -24,11 +24,13 @@ module.exports = (sequelize, DataTypes) => {
       Voucher.init(
             {
                   status: DataTypes.STRING,
+                  idCreate: DataTypes.INTEGER,
+                  idFoodused: DataTypes.INTEGER,
+                  code: DataTypes.STRING,
                   typeVoucher: DataTypes.STRING,
                   discount: DataTypes.STRING,
                   startTime: DataTypes.STRING,
                   endTime: DataTypes.STRING,
-                  timeApplied: DataTypes.STRING,
             },
             {
                   sequelize,

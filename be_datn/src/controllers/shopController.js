@@ -1,6 +1,7 @@
 /** @format */
 
 import shopService from "../services/shopService";
+import { verifyToken } from "../middleware/JWTAction";
 
 const handleCreateNewItemProduct = async (req, res) => {
   const data = req.body;
@@ -63,10 +64,88 @@ const handleUpdateItemProduct = async (req, res) => {
   return res.status(200).json(message);
 };
 
+//introduce shop
+
+const handleGetIntroduceExtra = async (req, res) => {
+  const { id, access_token } = req.query;
+  const decode = verifyToken(access_token);
+  const idShop = parseInt(decode.idUser);
+  let result = await shopService.getIntroduceExtra(id, idShop);
+  return res.status(200).json(result);
+};
+
+const handleCreateIntroduceExtra = async (req, res) => {
+  const data = req.body;
+  // const access_token = data.access_token;
+  // const decode = verifyToken(access_token);
+  // const idShop = parseInt(decode.idUser);
+  // data.idShop = idShop;
+  let result = await shopService.createIntroduceExtra(data);
+  return res.status(200).json(result);
+};
+
+const handleDeleteIntroduceExrta = async (req, res) => {
+  let data = req.query;
+  console.log("data", data);
+  let result = await shopService.deleteIntroduceExtra(data);
+  return res.status(200).json(result);
+};
+
+const handleGetIntroduce = async (req, res) => {
+  const access_token = req.query.access_token;
+  const decode = verifyToken(access_token);
+  const idShop = parseInt(decode.idUser);
+
+  let result = await shopService.getIntroduce(idShop);
+  return res.status(200).json(result);
+};
+
+const handleCreateIntroductionShop = async (req, res) => {
+  const data = req.body;
+  let message = await shopService.createIntroductionShop(data);
+  return res.status(200).json(message);
+};
+
+// handle vourcher
+
+const handleCreateVoucher = async (req, res) => {
+  const data = req.body;
+  let result = await shopService.createVoucher(data);
+  return res.status(200).json(result);
+};
+const handleGetAllVoucherShop = async (req, res) => {
+  let access_token = req.query.access_token;
+  const decode = verifyToken(access_token);
+  const idShop = parseInt(decode.idUser);
+  let result = await shopService.getAllVoucher(idShop);
+  return res.status(200).json(result);
+};
+const handleUpdateVoucher = async (req, res) => {
+  const data = req.body;
+  let result = await shopService.updateVoucher(data);
+  return res.status(200).json(result);
+};
+const handleDeleteVoucher = async (req, res) => {
+  const data = req.body;
+  let result = await shopService.deleteVoucher(data);
+  return res.status(200).json(result);
+};
+
 module.exports = {
   handleCreateNewItemProduct: handleCreateNewItemProduct,
   handleGetAllProduct: handleGetAllProduct,
   handleGetItemProduct: handleGetItemProduct,
   handleDeleteItemProduct: handleDeleteItemProduct,
   handleUpdateItemProduct: handleUpdateItemProduct,
+  //introduce shop
+  handleGetIntroduceExtra: handleGetIntroduceExtra,
+  handleCreateIntroduceExtra: handleCreateIntroduceExtra,
+  handleDeleteIntroduceExrta: handleDeleteIntroduceExrta,
+  handleGetIntroduce: handleGetIntroduce,
+  handleCreateIntroductionShop: handleCreateIntroductionShop,
+  //voucher
+  handleCreateVoucher: handleCreateVoucher,
+  handleGetAllVoucherShop: handleGetAllVoucherShop,
+  handleUpdateVoucher: handleUpdateVoucher,
+  handleDeleteVoucher: handleDeleteVoucher,
 };

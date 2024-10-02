@@ -51,7 +51,6 @@ const buyerReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_ALL_CART_SUCCESS:
       state.allCart = action.allCart;
-      console.log("Check fetch all cart success");
       return {
         ...state,
       };

@@ -10,7 +10,7 @@ module.exports = {
                         type: Sequelize.INTEGER,
                   },
                   idShipper: {
-                        allowNull: false,
+                        allowNull: true,
                         type: Sequelize.INTEGER,
                   },
                   idOrder: {

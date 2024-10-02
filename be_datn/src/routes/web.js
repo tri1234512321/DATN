@@ -1,53 +1,63 @@
-/** @format */
-
 import express from "express";
-//admin controller
-import adminController from "../controllers/adminController";
-//user controller
+import adminRoutes from "./adminRoutes";
+import shopRoutes from "./shopRoutes";
+import buyerRoutes from "./buyerRoutes";
+import shipperRoutes from "./shipperRoutes";
 import userController from "../controllers/userController";
-//Shop controller
-import shopController from "../controllers/shopController";
-//buyer controller
-import buyerController from "../controllers/buyerController";
-//middleware
-import authAdmin from "../middleware/authAdmin";
-import authShop from "../middleware/authShop";
+
+//middle
 import authUser from "../middleware/authUser";
-import authBuyer from "../middleware/authBuyer";
+import { auth } from "neo4j-driver";
+
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-  //userController
+  // User routes
   router.post("/api/login", userController.handleLogin);
+  router.put(
+    "/api/edit-user",
+    authUser.authUser,
+    userController.handleEditNewUser
+  );
+  router.put(
+    "/api/change-password",
+    authUser.authUser,
+    userController.changePassword
+  );
+  router.post(
+    "/api/forgot-password",
+    authUser.authUser,
+    userController.forgotPassword
+  );
+  router.post("/api/register", userController.handleCreateNewUser);
+  //get rating
+  router.get("/api/rating", authUser.authUser, userController.handleGetRate);
 
-  router.get("/api/admin-get-all-users", authAdmin.authAdmin, adminController.handleGetAllUsers);
-  router.get("/api/admin-get-all-shops", authAdmin.authAdmin, adminController.handleGetAllShops);
-  router.get("/api/admin-get-all-shippers", authAdmin.authAdmin, adminController.handleGetAllShippers);
-  router.get("/api/admin-get-all-buyers", authAdmin.authAdmin, adminController.handleGetAllBuyers);
-  router.post("/api/create-new-user", authAdmin.authAdmin, adminController.handleCreateNewUser);
-  router.delete("/api/delete-user", authAdmin.authAdmin, adminController.handleDeleteUser);
+  //Notificaiton
+  router.post("/api/notifications", userController.handleCreateNewNotification)
+  router.get("/api/notifications", userController.handleGetNotification)
+  router.delete("/api/notifications/:id", userController.handleDeleteNotification)
+  router.put("/api/notifications", userController.handleUpdateNotification)
 
-  router.put("/api/edit-user", authUser.authUser, userController.handleEditNewUser);
-  router.put("/api/change-password", authUser.authUser, userController.changePassword);
-  router.post("/api/forgot-password", authUser.authUser, userController.forgotPassword);
-  // router.post("/api/contact-us", userController.handleContactUsByEmail);
-  // router.put("/api/change-status-us.imageItem
+  router.get("/api/findUsers", userController.handleGetUser)
+  router.get("/api/getRelation", userController.handleGetRelation)
 
-  //api shop
-  router.post("/api/create-new-item-product", authShop.authShop, shopController.handleCreateNewItemProduct);
-  router.get("/api/shop-get-all-product", authShop.authShop, shopController.handleGetAllProduct);
-  router.get("/api/shop-get-item-product", authShop.authShop, shopController.handleGetItemProduct);
-  router.post("/api/update-item-product", authShop.authShop, shopController.handleUpdateItemProduct);
-  router.delete("/api/delete-item-product", authShop.authShop, shopController.handleDeleteItemProduct);
+  // parcel
+  router.get("/api/get-parcels-by-status", authUser.authUser, userController.handleGetParcelByStatus);
+  router.get("/api/get-parcels-by-id-order", authUser.authUser, userController.handleGetParcelByIdOrder);
+  router.put("/api/update-parcel", authUser.authUser, userController.handleUpdateParcel);
 
-  // api buyer
+  //get parcel items
+  router.get("/api/get-parcel-items", authUser.authUser, userController.handleGetParcelItem);
 
-  router.get("/api/buyer-get-all-product", buyerController.handleGetAllProduct);
-  router.post("/api/buyer-add-food-item", authUser.authUser, buyerController.handleAddFoodToCartItem);
-  router.get("/api/buyer-get-all-cart", authBuyer.authBuyer, buyerController.handleGetAllCart);
-  router.get("/api/get-all-cart-items-by-id", authBuyer.authBuyer, buyerController.handleGetAllCartItemById);
-  router.get("/api/get-food-by-id", authBuyer.authBuyer, buyerController.handleGetFoodById);
-  router.delete("/api/delete-cart-item", authBuyer.authBuyer, buyerController.handleDeleteCartItem);
+  // order
+  router.get("/api/get-orders-by-status", authUser.authUser, userController.handleGetOrderByStatus);
+  router.put("/api/update-order", authUser.authUser, userController.handleUpdateOrder);
+
+  router.use("/api", adminRoutes);
+  router.use("/api", shopRoutes);
+  router.use("/api", buyerRoutes);
+  router.use("/api", shipperRoutes);
 
   return app.use("/", router);
 };

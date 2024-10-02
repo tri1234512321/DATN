@@ -18,10 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             {
                   idJob: DataTypes.INTEGER,
                   idShipper: DataTypes.INTEGER,
-                  hourlyWage: DataTypes.STRING,
-                  date: DataTypes.STRING,
-                  startShift: DataTypes.STRING,
-                  endShift: DataTypes.STRING,
+                  accepted: DataTypes.INTEGER
             },
             {
                   sequelize,

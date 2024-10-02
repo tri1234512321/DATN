@@ -1,0 +1,76 @@
+// .cart-ctable {
+//   .cart-chead {
+//     .cart-ctr {
+//       display: grid;
+//       grid-template-columns: repeat(6, 1fr);
+//       gap: 1rem;
+//       padding: 10px 0;
+//       font-weight: bold;
+//       text-align: center;
+
+//       .cart-cth {
+//         padding: 10px;
+//         border-bottom: 2px solid #ddd;
+//       }
+//     }
+//   }
+
+//   .cart-cfoot {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 10px;
+//     border-top: 2px solid #ddd;
+//     background-color: #fff;
+
+//     .clear-cart-btn,
+//     .checkout-btn {
+//       /* Các kiểu dáng nút bình thường */
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       cursor: pointer;
+//       transition: background-color 0.3s ease;
+//     }
+
+//     .clear-cart-btn:disabled,
+//     .checkout-btn:disabled {
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       cursor: not-allowed;
+//       opacity: 0.5; /* Làm mờ nút bấm khi disabled */
+//     }
+
+//     .clear-cart-btn {
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       background-color: red; /* Màu nền của nút khi bình thường */
+//       color: white; /* Màu chữ của nút khi bình thường */
+//     }
+
+//     .clear-cart-btn:disabled {
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       background-color: #f5c6cb; /* Màu nền của nút khi disabled */
+//       color: #721c24; /* Màu chữ của nút khi disabled */
+//     }
+
+//     .checkout-btn {
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       background-color: #ff7300; /* Màu nền của nút khi bình thường */
+//       color: #fff; /* Màu chữ của nút khi bình thường */
+//     }
+
+//     .checkout-btn:disabled {
+//       min-height: 40px;
+//       border-radius: 8px;
+//       padding: 4px 16px;
+//       background-color: #f5a623; /* Màu nền của nút khi disabled */
+//       color: #fff; /* Màu chữ của nút khi disabled */
+//     }
+//   }
+// }

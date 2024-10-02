@@ -3,79 +3,82 @@
 
 /* Webkit (Chrome, Safari, Opera) */
 ::-webkit-scrollbar {
-    border-radius: 4px;
-    width: 8px;
+  border-radius: 4px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: #5f6f52; /* Màu của thanh kéo */
+  border-radius: 4px;
+  background-color: #5f6f52; /* Màu của thanh kéo */
 }
 
 /* Firefox */
 ::-moz-scrollbar {
-    width: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-moz-scrollbar-thumb {
-    background-color: #5f6f52;
+  background-color: #5f6f52;
 }
 
 /* Internet Explorer/Edge */
 ::-ms-scrollbar {
-    width: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-ms-scrollbar-thumb {
-    background-color: #5f6f52;
+  background-color: #5f6f52;
 }
 
 .text-center {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 .text-left {
-    text-align: left !important;
+  text-align: left !important;
 }
 
 .text-right {
-    text-align: right !important;
+  text-align: right !important;
 }
 
 .text-red {
-    color: $common-red !important;
+  color: $common-red !important;
 }
 
 .primary-text {
-    color: #5f6f52 !important;
+  color: #5f6f52 !important;
 }
 
 .text-shadow {
-    text-shadow: 2px 0px #5f6f52;
+  text-shadow: 2px 0px #5f6f52;
 }
 
 .text-input-placeholder {
-    input::placeholder {
-        color: #5f6f52 !important;
-    }
+  input::placeholder {
+    color: #5f6f52 !important;
+  }
 }
 
 .primary {
-    background-color: #fef6d5 !important;
+  background-color: #fef6d5 !important;
 }
 
 .d-flex {
-    display: flex !important;
+  display: flex !important;
 }
 
 .absolute {
-    position: absolute !important;
+  position: absolute !important;
 }
 
 .relative {
-    position: relative;
+  position: relative;
 }
 
 .bg-transparent {
-    background: #ffffff00 !important;
+  background: #ffffff00 !important;
 }

@@ -1,0 +1,64 @@
+/** @format */
+
+.wrap-container-product {
+    width: 100%;
+    padding: 16px 10px 0px 10px;
+    .row-orders {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 10px;
+        // margin-bottom: 10px;
+        
+        .col-order {
+            width: 100%;
+            min-width: 280px;
+            height: 241px;
+            // border-top-left-radius: 10px;
+            // border-top-right-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid yellowgreen;
+            background-color: white;
+
+            .user-order {
+                height: 40px;   
+                margin-left: 10px;
+                margin-right:10px;
+                border-bottom: 1px solid lightgrey;
+            }
+
+            .img-order {
+                height: 140px;
+                display: flex;
+                margin:10px;
+                // border: solid lightgrey 1px;
+                // border-radius: 5px;
+
+                img {
+                    width: 130px;
+                    height: 130px
+                }
+
+                .order-infor{
+                    padding-left:10px;
+                }
+            }
+
+            .func-order {
+                height: 40px;
+                display: grid;
+                grid-template-columns: auto auto;
+
+                button {
+                    border: none;
+                }
+            }
+        }
+    }
+}
+
+
+.btn-close {
+    float: right;
+    text-align: right;
+}

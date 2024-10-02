@@ -1,0 +1,88 @@
+.manage-job-form {
+  @apply p-6 bg-white rounded-lg shadow-md;
+
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+
+  .form-select,
+  .form-input {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+
+  .form-actions {
+    min-height: 40px;
+    @apply flex justify-end mt-6;
+
+    .btn {
+      @apply px-4 py-2 font-medium rounded-md;
+
+      &.btn-save {
+        min-height: 40px;
+        min-width: 120px;
+        @apply bg-blue-500 text-white hover:bg-blue-600;
+      }
+
+      &.btn-cancel {
+        min-height: 40px;
+        min-width: 120px;
+        @apply bg-red-500 text-white hover:bg-red-600 ml-2;
+      }
+    }
+  }
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+
+  th {
+    background-color: #28a745; // Màu nền xanh lá cây
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2; // Màu nền cho các dòng chẵn
+  }
+
+  tr:hover {
+    background-color: #ddd; // Màu nền khi hover
+  }
+
+  .btn-action {
+    margin-right: 10px;
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+
+.job-table th, .job-table td {
+  height: 50px; // Chiều cao dòng
+  width: 150px; // Kích thước cột
+}
+
+.job-table th:first-child, .job-table td:first-child {
+  width: 50px; // Kích thước cột ID
+}
+
+.job-table th:last-child, .job-table td:last-child {
+  width: 200px; // Kích thước cột Actions
+}
+

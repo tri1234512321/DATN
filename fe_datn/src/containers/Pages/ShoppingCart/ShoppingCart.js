@@ -1,192 +1,404 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import { Buffer } from "buffer";
-
-import "./ShoppingCart.scss";
-
-import HomeHeader from "../../../components/HomeHeader/HomeHeader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
+import * as actions from "../../../store/actions";
 import {
   buyerGetAllCart,
   buyerGetAllCartItems,
   buyerGetFoodById,
   buyerDeleteCartItem,
+  buyerGetAllCartItemByCarts,
+  buyerPaymentAll,
+  clearCart,
+  buyerUpdateCartItem,
 } from "../../../services/buyerService";
+import {paymentBill} from "../../../services/paymentService";
+import "./ShoppingCart.scss";
+import HomeHeader from "../../../components/HomeHeader/HomeHeader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { Redirect} from "react-router-dom";
+import {SocketContext} from "../../../context/socketContext";
+import { useContext} from "react";
+import { AuthContext } from "../../../context/authContext";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../../components/Social/axios";
+import Footer from "../../../components/Footer/Footer";
 
 export default function ShoppingCart() {
   const access_token = localStorage.getItem("access_token");
   const [carts, setCarts] = useState([]);
+  const [allCartItems, setAllCartItems] = useState([]);
+  const [allAmounts, setAllAmounts] = useState([]);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchAllCartItems = async () => {
       try {
         const res = await buyerGetAllCart(access_token);
-        setCarts(res.allCart);
-        // console.log(res);
+        let allCart = res.allCart;
+        setCarts(allCart);
+        const itemsData = await buyerGetAllCartItemByCarts(
+          allCart,
+          access_token
+        );
+        let items = itemsData.data;
+        setAllCartItems(items);
       } catch (e) {
-        console.error("Error data: ", e);
+        console.error("Lỗi khi lấy dữ liệu: ", e);
       }
     };
     fetchAllCartItems();
+  }, [access_token]);
+
+  const handleUpdateAllCartItems = async () => {
+    try {
+      const res = await buyerGetAllCartItemByCarts(carts, access_token);
+      let items = res.data;
+      setAllCartItems(items);
+    } catch (e) {
+      console.error("Lỗi khi cập nhật sản phẩm trong giỏ hàng: ", e);
+    }
+  };
+
+  const clearCartFunc = async () => {
+    try {
+      let clear = await clearCart(access_token, carts);
+      if (clear.EC === 0) {
+        dispatch(actions.fetchAllCartStart(access_token));
+        toast.success(clear.EM);
+        setCarts([]);
+        setAllCartItems([]);
+        await handleUpdateAllCartItems();
+      } else {
+        toast.error("Xóa giỏ hàng không thành công!");
+      }
+    } catch (e) {
+      toast.error("Xóa giỏ hàng không thành công!");
+      console.error("Lỗi khi xóa giỏ hàng: ", e);
+    }
+  };
+
+  const getAmount = useCallback((arrAmount, cartIndex) => {
+    setAllAmounts((prevAmounts) => {
+      const updatedAmounts = [...prevAmounts];
+      updatedAmounts[cartIndex] = arrAmount;
+      return updatedAmounts;
+    });
   }, []);
-  console.log(carts);
+
   return (
-    <div className='wrap-payment'>
+    <div className="wrap-payment">
       <HomeHeader />
-      <div className='container-payment'>
-        <div className='cart-ctable'>
+      <div className="container-payment">
+        <div className="cart-ctable">
           <CartHead />
-
-          {carts && carts.map((cart) => <CartBody cart={cart} access_token={access_token} />)}
-
-          <CartFoot />
+          {carts.map((cart, index) => (
+            <CartBody
+              key={index}
+              cart={cart}
+              cartIndex={index}
+              access_token={access_token}
+              onUpdateAllCartItems={handleUpdateAllCartItems}
+              getAmount={getAmount}
+            />
+          ))}
+          <CartFoot
+            allFood={allCartItems}
+            allAmounts={allAmounts}
+            clearCartFunc={clearCartFunc}
+          />
         </div>
       </div>
+      <ToastContainer />
+      {/* <Footer/> */}
     </div>
   );
 }
 
 function CartHead() {
   return (
-    <div className='cart-chead border-2 border-gray-700 bg-white'>
-      <div className='cart-ctr fw-6 font-manrope fs-15'>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>STT</span>
-        </div>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>Sản Phẩm</span>
-        </div>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>Đơn Giá</span>
-        </div>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>Số Lượng</span>
-        </div>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>Tổng Tiền</span>
-        </div>
-        <div className='cart-cth'>
-          <span className='cart-ctxt'>Thao Tác</span>
-        </div>
+    <div className="cart-chead border-b-2 border-gray-700 bg-white">
+      <div className="cart-ctr font-manrope text-sm text-gray-600">
+        <div className="cart-cth">STT</div>
+        <div className="cart-cth">Sản Phẩm</div>
+        <div className="cart-cth">Đơn Giá</div>
+        <div className="cart-cth">Số Lượng</div>
+        <div className="cart-cth">Tổng Tiền</div>
+        <div className="cart-cth">Thao Tác</div>
       </div>
     </div>
   );
 }
 
-function CartBody({ cart, access_token }) {
+function CartBody({
+  cart,
+  cartIndex,
+  access_token,
+  onUpdateAllCartItems,
+  getAmount,
+}) {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // console.log(cart.id +" _ "+ access_token)
     const fetchBuyerGetAllCartItems = async () => {
       try {
         const res = await buyerGetAllCartItems(cart.id, access_token);
-        setCartItems(res.allCartItem);
-        console.log(res.allCartItem, "all cart items");
+        let arrCartItem = res.allCartItem.filter((item) => item.status === 1);
+        let arrAmountOfItem = arrCartItem.map((item) => item.amountFood);
+        getAmount(arrAmountOfItem, cartIndex);
+        setCartItems(arrCartItem);
       } catch (e) {
-        console.error("Error data: ", e);
+        console.error("Lỗi khi lấy dữ liệu: ", e);
       }
     };
     fetchBuyerGetAllCartItems();
-  }, [cart.id, access_token]);
+  }, [cart.id, access_token, getAmount]);
+
+  const handleItemDeleted = (deletedCartItemId) => {
+    if (deletedCartItemId) {
+      setCartItems((prevCarts) =>
+        prevCarts.filter((cart) => cart.id !== deletedCartItemId)
+      );
+      onUpdateAllCartItems();
+    } else {
+      setCartItems([]);
+      onUpdateAllCartItems();
+    }
+  };
 
   return (
-    <div className='mb-5 border-2 border-gray-700'>
-      {cartItems &&
-        cartItems.map((cartItem, index) => <CartItem cartItem={cartItem} index={index} access_token={access_token} />)}
+    cartItems.length > 0 && (
+      <div className="mb-5 border-b-2 border-gray-700">
+        {cartItems.map((cartItem, index) => (
+          <CartItem
+            key={index}
+            cartItem={cartItem}
+            index={index}
+            access_token={access_token}
+            onItemDeleted={handleItemDeleted}
+          />
+        ))}
+      </div>
+    )
+  );
+}
+function CartFoot({ allFood, allAmounts, clearCartFunc }) {
+  const access_token = localStorage.getItem("access_token");
+  const [paymentOrder, setPaymentOrder] = useState(0);
+  const flatAmounts = allAmounts.flat();
+  const hasItems = allFood.length > 0; // Kiểm tra xem giỏ hàng có chứa sản phẩm hay không
+  const socket = useContext(SocketContext);
+  const { currentUser } = useContext(AuthContext);
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const updatedCartItems = allFood.map((item, index) => ({
+      ...item,
+      amountFood: flatAmounts[index],
+      totalAmount: flatAmounts[index],
+    }));
+    const total = updatedCartItems.reduce(
+      (acc, item) => acc + item.price * item.amountFood,
+      0
+    );
+    setPaymentOrder(total);
+  }, [allFood]);
+
+  const mutation = useMutation(
+    (newNotification) => {
+      return makeRequest.post("/notifications", newNotification);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["notifications"]);
+      },
+    }
+  );
+
+  const payment = async () => {
+    var currentdate = new Date();
+    var datetime =
+      currentdate.getDate() +
+      "/" +
+      (currentdate.getMonth() + 1) +
+      "/" +
+      currentdate.getFullYear() +
+      " @ " +
+      currentdate.getHours() +
+      ":" +
+      currentdate.getMinutes() +
+      ":" +
+      currentdate.getSeconds();
+    const updatedAllFood = allFood.map((item, index) => ({
+      ...item,
+      amountFood: flatAmounts[index],
+    }));
+    let data = {
+      totalMoney: paymentOrder,
+      allFood: updatedAllFood,
+      access_token: access_token,
+      timeOrder: datetime,
+    };
+    console.log(updatedAllFood);
+    updatedAllFood.forEach(async food => {
+      socket.emit("sendNotification", {
+        senderId: currentUser?.user?.id,
+        receiverId: food?.idShop,
+        text: "Đã đặt mua một món ăn",
+      });
+
+      await mutation.mutate({ content:`đã đặt mua món ăn ${food.foodName} với số lượng ${food.amountFood}`, access_token, idReceivedUser: food?.idShop});
+    });
+
+    let pm = await paymentBill(data);
+    console.log(pm);
+
+    // let res = await buyerPaymentAll(data);
+    // if (res.EC === 0) {
+    //   toast.success("Thanh toán đơn hàng thành công!");
+    // } else {
+    //   toast.error("Thanh toán đơn hàng không thành công!");
+    // }
+
+    clearCartFunc();
+    window.location.replace(pm["order_url"]);
+  };
+
+  return (
+    <div className="cart-cfoot flex justify-between py-4 bg-white">
+      <button
+        type="button"
+        className="clear-cart-btn text-danger text-sm"
+        onClick={clearCartFunc}
+        disabled={!hasItems} // Disable nếu không có sản phẩm
+      >
+        <FontAwesomeIcon icon={icon({ name: "Trash" })} className="mr-1" />
+        Xóa Giỏ Hàng
+      </button>
+      <button
+        type="button"
+        className="checkout-btn text-white text-sm"
+        onClick={payment}
+        disabled={!hasItems} // Disable nếu không có sản phẩm
+      >
+        Tổng thanh toán {paymentOrder.toLocaleString("vi-VN")}₫ (Thanh toán)
+      </button>
     </div>
   );
 }
 
-function CartFoot() {
-  return (
-    <div className='cart-cfoot flex align-start justify-between py-3 bg-white'>
-      <div className='cart-cfoot-l'>
-        <button type='button' className='clear-cart-btn text-danger fs-15 text-uppercase fw-4'>
-          <FontAwesomeIcon className='fas fa-trash' icon={icon({ name: "Trash" })}></FontAwesomeIcon>
-          <span className='mx-1'>Xóa Giỏ Hàng</span>
-        </button>
-      </div>
-
-      <div className='cart-cfoot-r flex flex-column justify-end'>
-        <div className='total-txt flex align-center justify-end'>
-          <div className='font-manrope fw-5'>Tổng thanh toán ("Total"): </div>
-          <span className='text-orange fs-22 mx-2 fw-6'>{"4354"}</span>
-        </div>
-
-        <button type='button' className='checkout-btn text-white bg-orange fs-16'>
-          Mua Hàng (Check Out)
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function CartItem({ cartItem, index, access_token }) {
+function CartItem({ cartItem, index, access_token, onItemDeleted }) {
   const [product, setProduct] = useState([]);
+  const [quantity, setQuantity] = useState(cartItem.amountFood);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchBuyerGetProduct = async () => {
       try {
         const res = await buyerGetFoodById(cartItem.idFood, access_token);
         setProduct(res.food);
-        console.log(res.allCartItem, "all cart items");
       } catch (e) {
-        console.error("Error data: ", e);
+        console.error("Lỗi khi lấy dữ liệu: ", e);
       }
     };
     fetchBuyerGetProduct();
   }, [cartItem.idFood, access_token]);
 
-  const deleteItem = (product) => {
-    console.log("check item delete: ", product);
-    //     useEffect(() => {
-    //       const fetchBuyerDeleteItem = async () => {
-    //             try{
-    //                   const res = await buyerDeleteCartItem()
-    //             }
-    //       }
-    //     })
+  const deleteItem = async (item) => {
+    try {
+      const { primaryImage, ...productWithoutImage } = item;
+      productWithoutImage.idCart = cartItem.idCart;
+      productWithoutImage.access_token = access_token;
+      let data = await buyerDeleteCartItem(productWithoutImage);
+      if (data.EC === 0) {
+        dispatch(actions.fetchAllCartStart(access_token));
+        onItemDeleted(cartItem.id);
+        toast.success("Xóa sản phẩm trong giỏ hàng thành công!");
+      } else {
+        toast.error("Xóa sản phẩm trong giỏ hàng không thành công!");
+      }
+    } catch (e) {
+      console.error("Lỗi khi xóa sản phẩm trong giỏ hàng: ", e);
+    }
   };
+
+  const handleQuantityChange = async (e) => {
+    const newQuantity = parseInt(e.target.value, 10);
+
+    if (newQuantity < 1) {
+      toast.error("Số lượng phải lớn hơn 0.");
+      return;
+    }
+
+    try {
+      // Gửi yêu cầu cập nhật số lượng lên server
+      const updatedCartItem = {
+        ...cartItem,
+        amountFood: newQuantity,
+      };
+      const response = await buyerUpdateCartItem({
+        updatedCartItem,
+        access_token,
+      });
+      console.log("respone: ", response);
+      if (response.EC === 0) {
+        setQuantity(newQuantity);
+        dispatch(actions.fetchAllCartStart(access_token));
+      } else {
+        toast.error("Cập nhật số lượng không thành công!");
+      }
+    } catch (e) {
+      console.error("Lỗi khi cập nhật số lượng: ", e);
+      toast.error("Cập nhật số lượng không thành công!");
+    }
+  };
+
+  let imageBase64 = "";
+  if (product.primaryImage) {
+    imageBase64 = Buffer.from(product.primaryImage, "base64").toString(
+      "binary"
+    );
+  }
   return (
-    <div className='cart-cbody bg-white'>
-      <div className='cart-ctr py-4' key={cartItem.id}>
-        <div className='cart-ctd'>
-          <span className='cart-ctxt'>{index + 1}</span>
-        </div>
-        <div className='cart-ctd'>
-          <span className='cart-ctxt'>{product.foodName || "name null"}</span>
-          {/* <div
-            className={`image-description product-${product.id}`}
-            style={{
-              backgroundImage: `url('${imageBase64}')`,
-            }}
-          ></div> */}
-        </div>
-        <div className='cart-ctd'>
-          <span className='cart-ctxt'>{product.price || "price null"}</span>
-        </div>
-        <div className='cart-ctd'>
-          <div className='qty-change flex align-center'>
-            <button type='button' className='qty-decrease flex align-center justify-center'>
-              <FontAwesomeIcon className='fas fa-minus' icon={icon({ name: "Minus" })}></FontAwesomeIcon>
-            </button>
-            <div className='qty-value flex align-center justify-center'>{cartItem.amountFood}</div>
-            <button type='button' className='qty-increase flex align-center justify-center'>
-              <FontAwesomeIcon className='fas fa-plus' icon={icon({ name: "Plus" })}></FontAwesomeIcon>
-            </button>
+    product && (
+      <div className="cart-ctable-item border-b-2 border-gray-700 bg-white">
+        <div className="cart-ctd">{index + 1}</div>
+        <div className="cart-ctd">
+          <div
+            className="image-description"
+            style={{ backgroundImage: `url('${imageBase64}')` }}
+          ></div>
+          <div className="cart-product-info">
+            <div className="cart-product-name">{product.foodName}</div>
+            <div className="cart-product-description">{product.descFood}</div>
           </div>
         </div>
-        <div className='cart-ctd'>
-          <span className='cart-ctxt text-orange fw-5'>{cartItem.amountFood * product.price || "null"}</span>
+        <div className="cart-ctd">{product.price}₫</div>
+        <div className="cart-ctd">
+          <input
+            type="number"
+            className="cart-quantity-input"
+            value={quantity}
+            onChange={handleQuantityChange}
+          />
         </div>
-        <div className='cart-ctd'>
-          <button type='button' className='delete-btn text-dark' onClick={() => deleteItem(product)}>
-            Delete
+        <div className="cart-ctd">
+          {(product.price * cartItem.amountFood).toLocaleString("vi-VN")}₫
+        </div>
+        <div className="cart-ctd">
+          <button
+            type="button"
+            className="delete-btn text-red-600"
+            onClick={() => deleteItem(product)}
+          >
+            <FontAwesomeIcon icon={icon({ name: "Trash" })} />
           </button>
         </div>
       </div>
-    </div>
+    )
   );
 }

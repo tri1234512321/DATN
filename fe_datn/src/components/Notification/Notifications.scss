@@ -1,0 +1,29 @@
+.right-item-header {
+  // position: relative;
+  // width: 26px;
+  .icon-right-header {
+    height: 24px;
+    transition: height 250ms ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: $color-3;
+      ~ .left-items-value {
+        color: $color-3;
+      }
+    }
+  }
+  .box-shadown-#ff5f29 {
+    box-shadow: 0px 0px 8px rgba(255, 95, 41, 0.1), 0px 4px 4px rgba(255, 95, 41, 0.04);
+  }
+  .right-items-value {
+    text-align: center;
+    border-radius: 9px;
+    // background: #ffffff;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: -8px;
+    right: 4px;
+    color: $color-3;
+  }
+}

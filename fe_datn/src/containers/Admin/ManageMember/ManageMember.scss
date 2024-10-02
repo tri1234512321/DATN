@@ -1,0 +1,85 @@
+/** @format */
+
+.users-container {
+      .add-new-user {
+            margin-bottom: 12px;
+            border-radius: none;
+      }
+
+      button.btn-create {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border: none;
+            background-color: #1e9ced;
+            border-radius: 8px;
+            color: white;
+            padding: 4px 24px;
+            margin: 4px 12px;
+      }
+}
+
+.modal-user-container {
+      .modal-header {
+            padding: 0 10px;
+            height: 35px;
+            background-color: #1e9ced !important;
+
+            .close {
+                  padding: 0 6px;
+                  background-color: #1e9ced;
+                  border: none;
+                  font-size: 2.2rem;
+                  line-height: revert;
+                  color: white;
+                  &:hover {
+                        color: rgb(255, 112, 112);
+                  }
+            }
+      }
+
+      .input-container {
+            display: flex;
+            justify-content: space-around;
+            input {
+                  width: 100%;
+                  display: inline-block;
+                  border: none;
+                  background: #f1f1f1;
+                  border-radius: 4px;
+                  height: 40px;
+            }
+            .form-group {
+                  width: 40%;
+                  display: flex;
+                  flex-direction: column;
+                  padding: 8px;
+                  margin: 4px 0 6px 0;
+                  label {
+                        margin-bottom: 2px;
+                  }
+                  input {
+                        outline: 1px solid #d1e6fa;
+                        background-color: white;
+                  }
+                  select {
+                        width: 80px;
+                        height: 32px;
+                        border-radius: 4px;
+                        border: 2px solid rgb(228, 228, 228);
+                        &:focus-visible {
+                              outline: 1px solid rgb(185, 185, 185);
+                        }
+                  }
+            }
+      }
+
+      .modal-footer {
+            button.btn {
+                  display: flex;
+                  align-items: center;
+                  font-weight: 500;
+                  font-size: 18px;
+                  padding: 20px;
+            }
+      }
+}
