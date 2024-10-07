@@ -12,7 +12,9 @@
     background-color: white;
     .header-container {
       height: 100%;
-      margin: 0 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
       background-color: transparent;
       position: relative;
       .left-header {

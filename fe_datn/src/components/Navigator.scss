@@ -4,6 +4,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+    height:100%;
     &.list-unstyled,
     .list-unstyled {
         list-style-type: none;
@@ -15,6 +16,7 @@
         }
         .menu-group-name {
             line-height: 40px;
+            height:100%;
             padding: 0 15px;
             border-right: 1px solid $border;
             &:first-child {

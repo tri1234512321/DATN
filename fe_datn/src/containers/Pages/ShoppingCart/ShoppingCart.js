@@ -123,7 +123,7 @@ function CartHead() {
   return (
     <div className="cart-chead border-b-2 border-gray-700 bg-white">
       <div className="cart-ctr font-manrope text-sm text-gray-600">
-        <div className="cart-cth">STT</div>
+        <div className="cart-cth">Ảnh</div>
         <div className="cart-cth">Sản Phẩm</div>
         <div className="cart-cth">Đơn Giá</div>
         <div className="cart-cth">Số Lượng</div>
@@ -366,15 +366,15 @@ function CartItem({ cartItem, index, access_token, onItemDeleted }) {
   return (
     product && (
       <div className="cart-ctable-item border-b-2 border-gray-700 bg-white">
-        <div className="cart-ctd">{index + 1}</div>
-        <div className="cart-ctd">
-          <div
+        <div className="cart-ctd p-0"><div
             className="image-description"
             style={{ backgroundImage: `url('${imageBase64}')` }}
-          ></div>
+          ></div></div>
+        <div className="cart-ctd">
+          
           <div className="cart-product-info">
             <div className="cart-product-name">{product.foodName}</div>
-            <div className="cart-product-description">{product.descFood}</div>
+            {/* <div className="cart-product-description">{product.descFood}</div> */}
           </div>
         </div>
         <div className="cart-ctd">{product.price}₫</div>

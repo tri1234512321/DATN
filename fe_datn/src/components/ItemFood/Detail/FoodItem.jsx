@@ -24,7 +24,7 @@ import {
   Modal,
   Upload,
 } from "antd";
-import "antd/dist/reset.css";
+// import "antd/dist/reset.css";
 import {
   LeftOutlined,
   RightOutlined,
@@ -711,7 +711,7 @@ const FoodItem = () => {
                           />
                           <p>
                             <strong>
-                              {review?.infoUser?.firstName +
+                              {review?.infoUser?.firstName + " " +
                                 review?.infoUser?.lastName}
                             </strong>
                           </p>

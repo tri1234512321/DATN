@@ -76,11 +76,11 @@ const Parcel = ({parcel,nextStatus,key}) => {
                 <div className="cart-product-description">{product.descFood}</div>
               </div>
             </div>
+            <div className="cart-ctd">{product.price}₫</div>
+            <div className="cart-ctd">{product.amount}</div>
             <div className="cart-ctd">
               {product?.pricePI?.toLocaleString("vi-VN")}₫
             </div>
-            <div className="cart-ctd">{product.amount}</div>
-            <div className="cart-ctd">{product.price}₫</div>
             {/* <div className="cart-ctd">
               <button
                   type="button"
@@ -94,21 +94,22 @@ const Parcel = ({parcel,nextStatus,key}) => {
 
       {nextStatus==="WAITING"&&<div className="mt-[3px] cart-ctable-item-parcel border-b-2 border-gray-700 bg-white rounded-b-[7px]">
         <div className="cart-ctd">
-          {"Mã gói: "+parcel.id}
-        </div>
-        <div className="cart-ctd">
-        </div>
-        <div className="cart-ctd">
-          {parcel?.totalMoney?.toLocaleString("vi-VN")}₫
-        </div>
-        <div className="cart-ctd">{parcel?.totalAmount}</div>
-        <div className="cart-ctd">
           <button type="button" className="w-[100%] px-3 py-2 text-sm font-medium text-center text-white bg-[#ff7300] rounded-lg hover:bg-[#ff7300d8] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             onClick={handleClick}
           >
             Xong món
           </button>
         </div>
+        <div className="cart-ctd">
+          {"Mã gói: "+parcel.id}
+        </div>
+        <div className="cart-ctd">
+        </div>
+        <div className="cart-ctd">{parcel?.totalAmount}</div>
+        <div className="cart-ctd">
+          {parcel?.totalMoney?.toLocaleString("vi-VN")}₫
+        </div>
+        
       </div>}
 
       {nextStatus==="DELIVERING" && currentUser?.user?.roleId==="SHIPPER"&&<div className="mt-[3px] cart-ctable-item-parcel border-b-2 border-gray-700 bg-white rounded-b-[7px]">
@@ -132,17 +133,18 @@ const Parcel = ({parcel,nextStatus,key}) => {
 
       {nextStatus==="SHIPPING"&&<div className="mt-[3px] cart-ctable-item-parcel border-b-2 border-gray-700 bg-white rounded-b-[7px]">
         <div className="cart-ctd">
+          {parcel.status}
+        </div>
+        <div className="cart-ctd">
           {"Mã gói: "+parcel.id}
         </div>
         <div className="cart-ctd">
         </div>
+        <div className="cart-ctd">{parcel?.totalAmount}</div>
         <div className="cart-ctd">
           {parcel?.totalMoney?.toLocaleString("vi-VN")}₫
         </div>
-        <div className="cart-ctd">{parcel?.totalAmount}</div>
-        <div className="cart-ctd">
-          {parcel.status}
-        </div>
+        
       </div>}
 
   </div>

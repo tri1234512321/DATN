@@ -42,6 +42,7 @@ export const fetchAddFoodToCartStart = (data) => {
       const res = await buyerAddFoodItem(data);
       if (res && res.EC === 0) {
         toast.success("Add food to cart successfully!");
+        console.log("in");
         await dispatch(fetchAddFoodToCartSuccess());
         await dispatch(fetchAllCartStart(data.access_token));
       } else {

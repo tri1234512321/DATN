@@ -59,17 +59,7 @@ const Order = ({order,nextStatus}) => {
       ))}
 
       <div className="mt-[12px] cart-ctable-item-parcel border-b-2 border-gray-700 bg-white rounded-b-[7px]">
-        <div className="cart-ctd text-red-500">
-          {"Người mua: "+order.user.firstName+" "+order.user.lastName}
-        </div>
-        <div className="cart-ctd text-red-500">
-          {"Sđt: "+order.user.phoneNumber}
-        </div>
-        <div className="cart-ctd text-red-500">
-          {order?.totalMoney?.toLocaleString("vi-VN")}₫
-        </div>
-        <div className="cart-ctd text-red-500">{order?.totalAmount}</div>
-        {
+      {
           order.status==="ORDER_SUCCESS" && data
           ? data.filter((parcel)=>parcel.status!=='DELIVERING').length===0
             ? <div className="cart-ctd">
@@ -102,7 +92,16 @@ const Order = ({order,nextStatus}) => {
               {order.status}
             </div>
         }
-        
+        <div className="cart-ctd text-red-500">
+          {"Người mua: "+order.user.firstName+" "+order.user.lastName}
+        </div>
+        <div className="cart-ctd text-red-500">
+          {"Sđt: "+order.user.phoneNumber}
+        </div>
+        <div className="cart-ctd text-red-500">{order?.totalAmount}</div>
+        <div className="cart-ctd text-red-500">
+          {order?.totalMoney?.toLocaleString("vi-VN")}₫
+        </div>
       </div>
     </div> 
   )

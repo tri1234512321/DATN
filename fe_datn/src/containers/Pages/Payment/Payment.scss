@@ -1,10 +1,10 @@
-form {
+.form {
   display: flex;
   flex-direction: column;
   // gap: 10px;
 }
 
-label {
+.label {
   display: flex;
   flex-direction: column;
   color: rgb(88, 88, 88);
@@ -33,7 +33,7 @@ label {
   }
 }
 
-input {
+.input {
   padding: 8px 8px;
   border-radius: 5px;
   border: 1px solid #bebebe;
@@ -42,7 +42,7 @@ input {
   margin-bottom: 20px;
 }
 
-button {
+.button {
   border: none;
   padding: 10px;
   cursor: pointer;

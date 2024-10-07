@@ -297,16 +297,16 @@ class AllFoodItem extends Component {
                             <StarRating
                               rating={Number(product?.rate?.rateAverage)}
                             />
-                            <span>
+                            {/* <span>
                               {product?.rate?.volumnAns
                                 ? "Rates: " + product?.rate?.volumnAns
                                 : "Rates: 0"}
-                            </span>
+                            </span> */}
                             
                           </div>
                           <div className="price-info">
                             <span className="text-red-400 text-xl">{product.price} <sup>₫</sup></span>
-                            <span>Đã bán: 123</span>
+                            {/* <span>Đã bán: 123</span> */}
                             {/* <span
                               className="view-details"
                               

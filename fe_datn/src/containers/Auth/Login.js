@@ -68,9 +68,9 @@ class Login extends Component {
         } else if (dataUser.data.user.roleId === "BUYER") {
           navigate("/");
         } else if (dataUser.data.user.roleId === "SHIPPER") {
-          navigate("/shipper/home-shipper");
+          navigate("/shipper/management-register-jobs");
         } else if (dataUser.data.user.roleId === "SHOP") {
-          navigate("/shop/home-shop");
+          navigate("/shop/management-foods");
         } else {
           navigate("/page-not-found");
         }

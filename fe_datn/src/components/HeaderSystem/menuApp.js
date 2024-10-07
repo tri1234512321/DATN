@@ -58,32 +58,32 @@ export const adminMenu = [
             ],
       },
       //manage-revenue
-      {
-            name: "menu.management.manage-revenue",
-            menus: [
-                  {
-                        name: "menu.management.manage-revenue",
-                        link: "/admin/manage-revenue",
-                  },
-                  {
-                        name: "menu.management.manage-revenue-shop",
-                        link: "/admin/manage-revenue-shop",
-                  },
-            ],
-      },
+      // {
+      //       name: "menu.management.manage-revenue",
+      //       menus: [
+      //             {
+      //                   name: "menu.management.manage-revenue",
+      //                   link: "/admin/manage-revenue",
+      //             },
+      //             {
+      //                   name: "menu.management.manage-revenue-shop",
+      //                   link: "/admin/manage-revenue-shop",
+      //             },
+      //       ],
+      // },
 ];
 //
 export const shopMenu = [
       //home shop
-      {
-            name: "menu.management.home-shop",
-            menus: [
-                  {
-                        name: "menu.management.home-shop",
-                        link: "/shop/home-shop",
-                  },
-            ],
-      },
+      // {
+      //       name: "menu.management.home-shop",
+      //       menus: [
+      //             {
+      //                   name: "menu.management.home-shop",
+      //                   link: "/shop/home-shop",
+      //             },
+      //       ],
+      // },
       //Manage foods
       {
             name: "menu.management.management-foods",
@@ -196,13 +196,13 @@ export const shipperMenu = [
             ],
       },
       //mangement revenue
-      {
-            name: "menu.management.management-salary",
-            menus: [
-                  {
-                        name: "menu.management.management-salary",
-                        link: "/shipper/management-salary",
-                  },
-            ],
-      },
+      // {
+      //       name: "menu.management.management-salary",
+      //       menus: [
+      //             {
+      //                   name: "menu.management.management-salary",
+      //                   link: "/shipper/management-salary",
+      //             },
+      //       ],
+      // },
 ];

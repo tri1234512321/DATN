@@ -166,8 +166,21 @@ class HomeHeader extends Component {
                 <Link to="/">
                 <div className="trademark primary-text">FFOOD</div>
                 </Link>
+                {/* <div className="area col-4"></div> */}
+              </div>
+
+              <div className="left-header flex justify-self-center gap-5">
+                <Link to="/">
+                <div className="text-2xl font-semibold  text-slate-600">HOME</div>
+                </Link>
+                <Link to="/product-list">
+                <div className="text-2xl font-semibold  text-slate-600">PRODUCT</div>
+                </Link>
+                <Link to="/history-order">
+                <div className="text-2xl font-semibold  text-slate-600">ORDER</div>
+                </Link>
                 <Link to="/social/social-home">
-                <div className="trademark text-blue-700">SFOOD</div>
+                <div className="text-2xl font-semibold  text-slate-600">SOCIAL</div>
                 </Link>
                 {/* <div className="area col-4"></div> */}
               </div>

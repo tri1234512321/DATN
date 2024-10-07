@@ -63,9 +63,9 @@ const Orders = ({status,nextStatus}) => {
         <div className="cart-ctr font-manrope text-sm text-gray-600">
           <div className="cart-cth">Sản Phẩm</div>
           <div className="cart-cth"></div>
-          <div className="cart-cth">Tổng tiền</div>
-          <div className="cart-cth">Số Lượng</div>
           <div className="cart-cth">Đơn giá</div>
+          <div className="cart-cth">Số Lượng</div>
+          <div className="cart-cth">Tổng tiền</div>
           {/* <div className="cart-cth">Thao Tác</div> */}
         </div>
       </div>

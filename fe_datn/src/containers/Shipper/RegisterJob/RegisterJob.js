@@ -32,10 +32,10 @@ const RegisterJob = () => {
 	// console.log(currentUser.access_token,data);
 
 	return (
-		<div className="manage-job-form min-h-[90vh]">
+		<div className="manage-job-form min-h-[90vh] max-w-[1200px] mx-auto">
 			{/* Bảng hiển thị danh sách công việc */}
 			{/* <div className="manage-job-form"> */}
-			<h1 className="text-xl font-semibold">Đăng ký ca làm việc</h1>
+			<h1 className="text-xl font-semibold my-[20px]">Đăng ký ca làm việc</h1>
 				<table className="job-table">
 					<thead>
 						<tr>

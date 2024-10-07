@@ -31,8 +31,9 @@ import FoodItem from "../components/ItemFood/Detail/FoodItem";
 import ShopDetail from "../containers/Pages/Shop/ShopDetail";
 import Social from "../containers/Social/Social";
 import Payment from "../containers/Pages/Payment/Payment";
-import HistoryOrder from "../components/HistoryOrder/HistoryOrder";
+import HistoryOrder from "../containers/Pages/OrderHistory/OrderHistory";
 import Register from "../containers/Auth/Register";
+import ShoppingList from "../containers/Pages/ListProduct/ListProduct";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -98,6 +99,7 @@ class App extends Component {
                 <Route path={"/shop-details/:id"} exact component={ShopDetail} />
                 <Route path={"/payment"} exact component={Payment}/>
                 <Route path={"/history-order"} exact component={HistoryOrder}/>
+                <Route path={"/product-list"} exact component={ShoppingList}/>
               </Switch>
             </div>
 
